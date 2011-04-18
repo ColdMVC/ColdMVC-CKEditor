@@ -40,7 +40,7 @@ component {
 			coldmvc.request.set("plugins.ckeditor", true);
 
 			// build out the full url to the editor
-			var src = coldmvc.config.get("assetPath") & "plugins/ckeditor/ckeditor.js";
+			var src = coldmvc.config.assetPath("/plugins/ckeditor/ckeditor.js");
 
 			// include the script
 			html = html & '<script type="text/javascript" src="#src#"></script>';
