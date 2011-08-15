@@ -5,7 +5,7 @@
  */
 component {
 
-	property fileSystemFacade;
+	property fileSystem;
 
 	/**
 	 * @events applicationStart
@@ -16,8 +16,8 @@ component {
 		var destination = expandPath("/public/plugins/ckeditor/");
 
 		// copy the assets over to the public directory
-		if (!fileSystemFacade.directoryExists(destination)) {
-			fileSystemFacade.directoryCopy(source, destination);
+		if (!fileSystem.directoryExists(destination)) {
+			fileSystem.directoryCopy(source, destination);
 		}
 
 	}
