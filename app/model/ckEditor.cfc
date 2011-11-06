@@ -1,10 +1,23 @@
 /**
  * @accessors true
  * @singleton true
- * @extends coldmvc.app.util.HTMLHelper
+ * @extends coldmvc.rendering.HTMLRenderer
  */
 component {
+	
+	/**
+	 * @inject coldmvc
+	 */
+	property requestScope;
 
+	/**
+	 * @inject coldmvc
+	 */
+	property coldmvc;
+
+	/**
+	 * @inject coldmvc
+	 */
 	property fileSystem;
 
 	/**
@@ -29,15 +42,17 @@ component {
 
 		// build out a normal textarea
 		var html = coldmvc.form.textarea(argumentCollection=arguments);
-
+		
+		var cache = requestScope.getNamespace("ckeditor");
+		
 		// check to see if the js has already been rendered
-		var rendered = coldmvc.request.get("plugins.ckeditor", false);
-
+		var rendered = cache.getValue("rendered", false);
+		
 		// if the js hasn't been rendered
 		if (!rendered) {
 
 			// flag it
-			coldmvc.request.set("plugins.ckeditor", true);
+			cache.setValue("rendered", true);
 
 			// build out the full url to the editor
 			var src = coldmvc.config.assetPath("/plugins/ckeditor/ckeditor.js");
