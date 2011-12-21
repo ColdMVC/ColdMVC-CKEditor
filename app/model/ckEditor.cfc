@@ -1,10 +1,8 @@
 /**
- * @accessors true
  * @singleton true
- * @extends coldmvc.rendering.HTMLRenderer
  */
-component {
-	
+component accessors="true" {
+
 	/**
 	 * @inject coldmvc
 	 */
@@ -38,16 +36,16 @@ component {
 	public string function render() {
 
 		// configure the arguments
-		configure(arguments);
+		coldmvc.form.configure(arguments);
 
 		// build out a normal textarea
 		var html = coldmvc.form.textarea(argumentCollection=arguments);
-		
+
 		var cache = requestScope.getNamespace("ckeditor");
-		
+
 		// check to see if the js has already been rendered
 		var rendered = cache.getValue("rendered", false);
-		
+
 		// if the js hasn't been rendered
 		if (!rendered) {
 
